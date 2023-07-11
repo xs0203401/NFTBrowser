@@ -8,11 +8,13 @@ import { useState } from "react";
 function App() {
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [nfts, setNfts] = useState([]);
 
   const handleSearch = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
       const data = await searchNFTs(searchText);
+      setNfts(data.result);
     } catch (error) {
       message.error(error.message);
     } finally {
@@ -21,9 +23,6 @@ function App() {
   };
 
   return (
-    // <div className="App">
-    //   <Button onClick={handleButtonClick}>Test</Button>
-    // </div>
     <Layout style={{ height: "100vh" }}>
       <Header>
         <div style={{ fontSize: 16, fontWeight: 6, color: "white" }}>
