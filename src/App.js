@@ -9,10 +9,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
 
-  const handleButtonClick = async () => {
-    searchNFTs("car");
-  };
-
   const handleSearch = async () => {
     try {
       setLoading(true);
@@ -20,6 +16,7 @@ function App() {
     } catch (error) {
       message.error(error.message);
     } finally {
+      setLoading(false);
     }
   };
 
@@ -41,9 +38,12 @@ function App() {
             style={{
               width: "calc(100% - 200px)",
             }}
-            defaultValue="https://ant.design"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
           />
-          <Button type="primary" onClick={handleSearch}>
+          <Button type="primary" onClick={handleSearch} loading={loading}>
             Submit
           </Button>
         </Input.Group>
