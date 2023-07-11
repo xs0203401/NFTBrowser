@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Button, Input, Layout, message } from "antd";
+import { Button, Card, Image, Input, Layout, List, message } from "antd";
 import { searchNFTs } from "./utils";
 import { Content, Header } from "antd/lib/layout/layout";
 import { useState } from "react";
@@ -46,6 +46,17 @@ function App() {
             Submit
           </Button>
         </Input.Group>
+        <List
+          grid={{ gutter: 16, column: 4 }}
+          dataSource={nfts}
+          renderItem={(item) => (
+            <List.Item>
+              <Card title={JSON.parse(item.metadata).name}>
+                <Image src={JSON.parse(item.metadata).image}></Image>
+              </Card>
+            </List.Item>
+          )}
+        />
       </Content>
     </Layout>
   );
