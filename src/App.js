@@ -4,6 +4,7 @@ import { Button, Card, Image, Input, Layout, List, message } from "antd";
 import { searchNFTs } from "./utils";
 import { Content, Header } from "antd/lib/layout/layout";
 import { useState } from "react";
+import NftCard from "./components/NftCard";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -59,11 +60,7 @@ function App() {
             xxl: 4,
           }}
           dataSource={nfts}
-          renderItem={(nft) => (
-            <List.Item key={JSON.parse(nft.metadata).name}>
-              <Card title={JSON.parse(nft.metadata).name} />
-            </List.Item>
-          )}
+          renderItem={(nft) => <NftCard nft={nft} />}
         />
       </Content>
     </Layout>
