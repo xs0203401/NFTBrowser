@@ -30,30 +30,36 @@ function App() {
         </div>
       </Header>
       <Content
-        style={{ height: "calc(100% - 64px)", padding: 20, overflow: "auto" }}
+        style={{ height: "calc(100% - 64px)", padding: 20, overflowY: "auto" }}
       >
-        <Input.Group compact style={{ width: 500 }}>
+        <Input.Group compact>
           <Input
-            style={{
-              width: "calc(100% - 200px)",
-            }}
+            style={{ width: 300 }}
+            placeholder="Enter a NFT name to search"
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-          <Button type="primary" onClick={handleSearch} loading={loading}>
-            Submit
-          </Button>
+          <Button type="primary">Search</Button>
         </Input.Group>
         <List
-          grid={{ gutter: 16, column: 4 }}
-          dataSource={nfts}
-          renderItem={(item) => (
-            <List.Item>
-              <Card title={JSON.parse(item.metadata).name}>
-                <Image src={JSON.parse(item.metadata).image}></Image>
-              </Card>
+          style={{
+            marginTop: 20,
+            height: "calc(100% - 52px)",
+            overflow: "auto",
+          }}
+          grid={{
+            gutter: 16,
+            xs: 1,
+            sm: 3,
+            md: 3,
+            lg: 3,
+            xl: 4,
+            xxl: 4,
+          }}
+          dataSource={[1, 2, 3]}
+          renderItem={(nft) => (
+            <List.Item key={nft}>
+              <Card title={nft} />
             </List.Item>
           )}
         />
