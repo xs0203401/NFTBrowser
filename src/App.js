@@ -39,7 +39,9 @@ function App() {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <Button type="primary">Search</Button>
+          <Button type="primary" loading={loading} onClick={handleSearch}>
+            Search
+          </Button>
         </Input.Group>
         <List
           style={{
@@ -56,10 +58,10 @@ function App() {
             xl: 4,
             xxl: 4,
           }}
-          dataSource={[1, 2, 3]}
+          dataSource={nfts}
           renderItem={(nft) => (
-            <List.Item key={nft}>
-              <Card title={nft} />
+            <List.Item key={JSON.parse(nft.metadata).name}>
+              <Card title={JSON.parse(nft.metadata).name} />
             </List.Item>
           )}
         />
